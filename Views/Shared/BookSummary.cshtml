@@ -1,0 +1,30 @@
+﻿@model Book
+
+<!--For loop to output all Book objects in Database-->
+<div class="card card-outline-primary m-1 p-1" style="width: 24rem;">
+    <div class="bg-faded p-1">
+        <h3 class="bg-dark text-white">Title: @Model.Title</h3>
+        <span class="badge badge-pill badge-info" stype="float:right">
+            <p>Author: @Model.AuthorFirst @Model.AuthorMiddle @Model.AuthorLast</p>
+        </span>
+        <p>Publisher: @Model.Publisher</p>
+        <p>ISBN: @Model.ISBN</p>
+        <p>Classification: @Model.Classification</p>
+        <p>Category: @Model.Category</p>
+        <p>Price: $@Model.Price</p>
+        <div class="card-text p-1">
+            <p>Pages: @Model.Page</p>
+        </div>
+    </div>
+
+    <form id="@Model.BookId" asp-page="/Cart" method="post">
+        <input type="hidden" asp-for="BookId" />
+        <input type="hidden" name="returnURL" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <span class="card-text p-1">
+            @Model.Title
+            <button type="submit" class="btn-success btn-sm pull-right" style="float:right">
+                Buy Now
+            </button>
+        </span>
+    </form>
+</div>
